@@ -1,5 +1,17 @@
 # Breda Morrissey website: redesign (Vercel-ready)
 
+**Live design:** the approved canvas designs are built into the site. Pages: Home, CBT for Anxiety, CBT for Stress,
+Services, FAQ, Contact, Blog (CMS) and articles (CMS), plus /admin.
+
+## Rebuild after changes
+```
+python3 _source/build.py        # SEO data, redirects, sitemap, CMS seed
+python3 _source/build_live.py   # pages in the approved design + preview copies
+```
+Design source: `_source/design/*.dc.html` (exported from the design canvas). Fees: edit `FEES` in `_source/build_live.py`
+(currently "On request" and 50–60 minute sessions, from her FAQ).
+
+
 Design: the approved "still water" mockup, refined. Palette built on blush #F1E6EA with deep plum
 (#3A2034 / #5C3553 / #7A4A6E), rose #C99AAE and a muted gold accent #C8A26A for stars. Fonts: DM Sans and Open Sans, as on her current site.
 
