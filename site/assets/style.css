@@ -503,3 +503,40 @@ a.accred-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-m);border
 @media (max-width:880px){.svc.flip .split>.quote-photo{order:0}}
 .mindful{position:relative}
 .mindful .pause{position:relative;margin:-56px 0 0 24px;max-width:340px;font-family:var(--head);color:var(--plum-800)}
+
+/* Home: help cards, journey, fees */
+.help-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(18px,2.2vw,26px)}
+.help-card{grid-column:span 2;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r-l);padding:28px 26px 26px;text-decoration:none;color:var(--text);transition:transform .3s,box-shadow .3s,border-color .3s}
+.help-card:nth-child(4){grid-column:2 / span 2}
+.help-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-m);border-color:var(--rose-400)}
+.help-card h3{margin:18px 0 .2em;font-size:1.3rem}
+.help-card .help-tag{font:500 1rem var(--head);color:var(--plum-600);margin:0 0 .8em}
+.help-card p{color:var(--muted);font-size:.97rem}
+.help-card .go{margin-top:auto;padding-top:6px;font:700 .95rem var(--head);color:var(--plum-600)}
+@media (max-width:980px){.help-grid{grid-template-columns:repeat(2,1fr)}.help-card,.help-card:nth-child(4){grid-column:auto}}
+@media (max-width:620px){.help-grid{grid-template-columns:1fr}}
+.journey{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(28px,4vw,56px);align-items:start}
+@media (max-width:960px){.journey{grid-template-columns:1fr}}
+.journey-steps{list-style:none;counter-reset:j;margin:0;padding:0}
+.journey-steps li{counter-increment:j;position:relative;padding:0 0 34px 72px;margin:0}
+.journey-steps li::before{content:counter(j,decimal-leading-zero);position:absolute;left:0;top:-2px;width:50px;height:50px;border-radius:50%;background:var(--blush);color:var(--plum-700);display:grid;place-items:center;font:700 1rem var(--head);border:1px solid var(--rose-200)}
+.journey-steps li:not(:last-child)::after{content:"";position:absolute;left:25px;top:56px;bottom:6px;width:1px;background:var(--rose-400)}
+.journey-steps h3{margin:8px 0 .5em}
+.journey-steps p{color:var(--muted)}
+.fees{position:sticky;top:130px;background:linear-gradient(180deg,#fff,var(--blush-50))}
+@media (max-width:960px){.fees{position:static}}
+.fee-list{margin:1rem 0 1.2rem;display:grid;gap:0}
+.fee-list div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.fee-list dt{color:var(--muted)}
+.fee-list dd{margin:0;font:700 1.05rem var(--head);color:var(--plum-800);text-align:right}
+mark.tbc{background:#FFF1B8;color:#6B5512;border-radius:6px;padding:.1em .45em;font-weight:700}
+#about .quote-photo{justify-self:center}
+
+/* Service pages (anxiety, depression) */
+.hero-statement{font:500 clamp(1.25rem,2vw,1.55rem)/1.4 var(--head);color:var(--plum-800);max-width:32ch;margin:1rem 0 .4rem}
+.types{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.type{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--rose-400);border-radius:var(--r-m);padding:22px 22px 20px}
+.type h3{font-size:1.12rem;margin-bottom:.4em}
+.type p{color:var(--muted);font-size:.95rem;margin:0}
+.crisis{margin-top:1.6rem;padding:18px 20px;border-radius:var(--r-m);background:var(--blush);color:var(--plum-800);font-size:.95rem;line-height:1.6}
+.crisis a{font-weight:700}

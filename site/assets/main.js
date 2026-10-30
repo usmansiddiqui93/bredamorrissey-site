@@ -10,46 +10,37 @@
     });
   }
 
-  // Contact form (Formspree). Replace YOUR_FORM_ID in contact.html before going live.
+  // Contact form: sends to /api/contact (stored in the admin inbox)
   var form = document.getElementById('contact-form');
-  if (form) {
-    var status = document.getElementById('form-status');
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var bad = false;
-      form.querySelectorAll('[required]').forEach(function (f) {
-        var ok = f.value.trim() !== '' && (f.type !== 'email' || /\S+@\S+\.\S+/.test(f.value));
-        f.setAttribute('aria-invalid', ok ? 'false' : 'true');
-        f.style.borderColor = ok ? '' : '#b23b3b';
-        if (!ok) bad = true;
-      });
-      status.className = 'form-status';
-      if (bad) {
-        status.textContent = 'Please fill in your name, a valid email address and your message.';
-        status.classList.add('err');
-        status.style.display = 'block';
-        return;
-      }
-      var action = form.getAttribute('action') || '';
-      if (action.indexOf('YOUR_FORM_ID') > -1) {
-        // Preview mode: no form endpoint connected yet
-        status.textContent = 'Thank you for contacting me. I will get back to you within 24 hours. (Preview: form not connected yet.)';
-        status.style.display = 'block';
-        form.reset();
-        return;
-      }
-      fetch(action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
-        .then(function (r) {
-          if (!r.ok) throw new Error('send failed');
-          status.textContent = 'Thank you for contacting me. I will get back to you within 24 hours.';
-          status.style.display = 'block';
-          form.reset();
-        })
-        .catch(function () {
-          status.textContent = 'Your message could not be sent. Please email bredamorrisseycounsellor@gmail.com or call 083 854 1298.';
-          status.classList.add('err');
-          status.style.display = 'block';
-        });
-    });
+  if (!form) return;
+  var status = document.getElementById('form-status');
+  function show(msg, err) {
+    status.className = 'form-status' + (err ? ' err' : '');
+    status.textContent = msg;
+    status.style.display = 'block';
   }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var bad = false;
+    form.querySelectorAll('[required]').forEach(function (f) {
+      var ok = f.value.trim() !== '' && (f.type !== 'email' || /\S+@\S+\.\S+/.test(f.value));
+      f.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      f.style.borderColor = ok ? '' : '#b23b3b';
+      if (!ok) bad = true;
+    });
+    if (bad) return show('Please fill in your name, a valid email address and your message.', true);
+    if (location.protocol === 'file:') {
+      form.reset();
+      return show('Thank you for contacting me. I will get back to you within 24 hours. (Preview: messages are only sent on the live site.)');
+    }
+    var data = Object.fromEntries(new FormData(form).entries());
+    data.page = location.pathname;
+    var submit = form.querySelector('button[type=submit]');
+    submit.disabled = true;
+    fetch(form.getAttribute('action'), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.ok) throw new Error(j.error); }); })
+      .then(function () { form.reset(); show('Thank you for contacting me. I will get back to you within 24 hours.'); })
+      .catch(function (err) { show((err && err.message) || 'Your message could not be sent. Please email bredamorrisseycounsellor@gmail.com or call 083 854 1298.', true); })
+      .finally(function () { submit.disabled = false; });
+  });
 })();

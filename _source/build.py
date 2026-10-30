@@ -347,7 +347,7 @@ def layout(c, title, desc, body, schema=None, og_image="breda-morrissey-counsell
 <main id="main">
 {body}
 </main>
-{cta(c) if key not in ("contact", "404") else ""}
+{cta(c) if key not in ("contact", "404", "home") else ""}
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -421,18 +421,69 @@ def page_hero(c, label, h1, lead, extra="", surface="surface-soft"):
 </section>'''
 
 # ---------------- PAGES ----------------
+# Fees: fill these in once Breda confirms them. None shows a highlighted "to be confirmed" placeholder.
+FEE_SESSION = None        # e.g. "€70"
+FEE_DURATION = None       # e.g. "50 minutes"
+FEE_INITIAL = None        # e.g. "Free 15-minute call"
+
+def tbc(v, label):
+    return E(v) if v else f'<mark class="tbc">{label}</mark>'
+
+HELP_CARDS = [
+  ("spiral", "Counselling for Anxiety", "Find calm in the chaos.",
+   "When you’re constantly worrying about what might happen next, even the smallest decisions can feel overwhelming. Explore what’s driving your anxiety, challenge unhelpful thought patterns and develop ways to feel more in control.",
+   "Explore anxiety counselling", "anxiety"),
+  ("feelings", "Counselling for Depression", "Carrying the load with you.",
+   "Depression can leave you feeling disconnected from the things and people you once enjoyed. Counselling gives you space to explore those feelings, understand what might be contributing to them, and begin taking manageable steps towards feeling better.",
+   "Explore depression counselling", "services"),
+  ("leaf", "Emotional Eating Support", "Feel in control and empowered.",
+   "Do you find yourself turning to food when you’re stressed, upset or overwhelmed? Emotional eating is often about much more than hunger. We can work together to understand your triggers, explore the feelings behind your eating habits and develop more supportive ways to cope, without guilt or judgement.",
+   "Explore emotional eating support", "services"),
+  ("sun", "Self-Confidence Counselling", "Never question why you again.",
+   "Perhaps you’re your own harshest critic, find it difficult to say no, or constantly worry about what other people think. Through counselling, we can explore where those beliefs come from and help you build self-esteem, set healthier boundaries and feel more comfortable being yourself.",
+   "Explore self-confidence counselling", "services"),
+  ("behaviours", "Relationship Counselling", "Build healthier connections.",
+   "Relationships can be complicated, whether you’re struggling with communication, finding it difficult to trust, or noticing the same patterns repeating themselves. Individual relationship counselling can help you explore your needs, understand your emotions and develop healthier ways of relating to others.",
+   "Explore relationship counselling", "services"),
+]
+
+def home_faqs():
+    cost = (f"My online counselling sessions cost {tbc(FEE_SESSION, 'price to be confirmed')} for {tbc(FEE_DURATION, 'duration to be confirmed')}. "
+            "You can also arrange an initial consultation to ask questions, discuss what you’re looking for and decide whether you’d feel comfortable working with me.</p>"
+            "<p>I’ll explain the fees and booking arrangements before your first appointment, so there are no unexpected costs.")
+    return [
+      ("Where do you offer online counselling services?",
+       "I provide confidential online counselling for adults across Ireland and the UK. Whether you’re based in Dublin, Cork, Limerick, Galway, Tipperary or elsewhere, you can access support without travelling to an appointment.</p><p>All you need is a reliable internet connection and a private, comfortable space where you feel able to talk freely. I’ll confirm that online counselling is suitable and that I can provide services in your location before we begin."),
+      ("How much does online counselling cost?", cost),
+      ("In-person vs online therapy: which is better for me?",
+       "Both online and in-person counselling can be effective. The right choice depends on your preferences, circumstances and the type of support you need.</p><p>Online therapy offers flexibility, privacy and convenience. You can talk to a therapist online from your own home, which may feel more comfortable if you’re anxious about attending appointments or have a busy schedule.</p><p>However, some people prefer being in the same room as their therapist, and certain difficulties may require in-person or specialist support.</p><p>We can discuss whether online counselling is a suitable option for you during our initial conversation."),
+      ("How many counselling sessions will I need?",
+       "There’s no set number of counselling sessions that works for everyone.</p><p>If you’re seeking support with a specific issue, such as managing anxiety or recognising unhelpful thought patterns, a shorter course of CBT-informed counselling may be appropriate.</p><p>Other concerns, particularly those involving difficult life experiences or long-standing patterns, may benefit from longer-term support.</p><p>We’ll discuss your goals and review your progress together, so you can make informed decisions about continuing therapy."),
+      ("Who is CBT not suitable for?",
+       "Cognitive Behavioural Therapy (CBT) can be effective for many difficulties, including anxiety and depression, but it isn’t necessarily the right approach for everyone.</p><p>CBT often involves exploring thoughts and behaviours and practising techniques between sessions. Some people prefer a less structured, more exploratory approach, while others may need specialist or more intensive support.</p><p>Certain complex mental health difficulties may require CBT to be adapted or combined with other treatments.</p><p>As a counsellor and psychotherapist, I recognise that everyone’s needs are different. I’ll discuss your circumstances with you and, if another type of support would be more appropriate, help you consider your options."),
+      ("Can I talk to a therapist online about more than one issue?",
+       "Absolutely. It’s common for anxiety, low confidence, relationship difficulties and other emotional challenges to overlap.</p><p>You don’t need to choose just one issue to discuss or have a clear explanation for how you’re feeling.</p><p>We’ll explore what’s happening in your life and focus on the areas that matter most to you."),
+      ("Is online counselling confidential?",
+       "Yes. Confidentiality is an important part of counselling, and our sessions provide a private space for you to discuss personal concerns.</p><p>Before we begin, I’ll explain how your information is handled, the steps we take to protect your privacy and the limited circumstances in which confidentiality may need to be broken, such as serious safety concerns.</p><p>I also recommend attending your online sessions somewhere private where you won’t be overheard."),
+    ]
+
 def page_home(c):
+    cards = "".join(f'''<a class="help-card" href="{c.link(link)}">
+      <span class="cycle-ic small">{ICO[ic]}</span>
+      <h3>{t}</h3><p class="help-tag">{tag}</p><p>{txt}</p><span class="go">{cta_label}</span></a>''' for ic, t, tag, txt, cta_label, link in HELP_CARDS)
+    faqs = home_faqs()
+    faq_html = "".join(f'<details{" open" if i == 0 else ""}><summary>{q}</summary><div class="answer"><p>{a}</p></div></details>' for i, (q, a) in enumerate(faqs))
     body = f'''
 <section class="hero">
   {RIPPLE_HOME}
   <div class="wrap hero-grid">
     <div>
-      <p class="kicker">Feeling anxious, overwhelmed or stuck in your thoughts?</p>
-      <h1>Online CBT for anxiety, overthinking &amp; low self-esteem</h1>
-      <p class="lead">Overthinking, low confidence and anxiety can make everyday life feel exhausting. I’m here to help you feel like yourself again.</p>
+      <p class="kicker">Accredited counsellor &amp; psychotherapist</p>
+      <h1>Online Counselling in Ireland and the UK</h1>
+      <p class="lead"><strong>Overthinking, low confidence, and anxiety can make everyday life feel exhausting. I’m here to help you feel like yourself again.</strong></p>
       <div class="btn-row">
-        <a class="btn btn-primary" href="{c.link('contact')}">Book a consultation</a>
-        <a class="btn btn-ghost" href="tel:{TEL}">Call {PHONE}</a>
+        <a class="btn btn-primary" href="#how-i-can-help">How I can help you</a>
+        <a class="btn btn-ghost" href="{c.link('contact')}">Book an initial consultation</a>
       </div>
       <div class="hero-trust">
         <span>{TRUST_ICON}Accredited member, APCP</span>
@@ -441,7 +492,7 @@ def page_home(c):
       </div>
     </div>
     <figure class="portrait">
-      <div class="frame"><img src="{c.img('breda-morrissey-counsellor.jpg')}" alt="Breda Morrissey, accredited counsellor and CBT psychotherapist" width="421" height="590" fetchpriority="high"></div>
+      <div class="frame"><img src="{c.img('breda-morrissey-counsellor.jpg')}" alt="Breda Morrissey, accredited counsellor and psychotherapist offering online counselling in Ireland and the UK" width="421" height="590" fetchpriority="high"></div>
       <figcaption><strong>Breda Morrissey</strong>Accredited counsellor &amp; psychotherapist, BA (Hons) APCP</figcaption>
       {doctify_badge(c)}
     </figure>
@@ -450,48 +501,50 @@ def page_home(c):
 
 <section class="surface-soft">
   <div class="wrap split top">
-    <div><h2>Whatever brought you here, you don’t have to keep carrying it alone</h2></div>
+    <div>
+      <p class="kicker">You’re not alone</p>
+      <h2>A safe space to talk, understand and move forward</h2>
+      <p class="statement">Whatever brought you here, you don’t have to keep carrying it alone.</p>
+    </div>
     <div class="measure">
-      <p>Do you find yourself overthinking everything, constantly worrying, or feeling stuck in your own mind? Maybe your confidence has taken a knock, or you’re carrying experiences that have left you feeling like you’re not quite good enough.</p>
-      <p>I’m Breda Morrissey, an accredited counsellor and psychotherapist specialising in CBT, counselling and mindfulness. I provide warm, confidential online counselling for adults across Ireland, helping you understand what you’re experiencing, develop practical coping strategies and feel more confident in yourself and your life.</p>
-      <p>All from the comfort of your own home.</p>
+      <p class="lead">Do you find yourself overthinking everything, constantly worrying, or feeling stuck in your own mind?</p>
+      <p>Maybe your confidence has taken a knock, or you’re carrying experiences that have left you feeling like you’re not quite good enough.</p>
+      <p>As an accredited counsellor and psychotherapist, I offer online counselling in Ireland and the UK. My approach draws on Cognitive Behavioural Therapy (CBT) and psychotherapy principles to help you understand how you think and manage your emotions.</p>
+      <p>Together we’ll find a way to move forward, where clarity and a sense of calm set you on a pathway to more confident living.</p>
+      <p><strong>Each session takes place online, in the comfort of your own home.</strong></p>
+      <div class="btn-row"><a class="btn btn-primary" href="#how-i-can-help">How I can help you</a></div>
     </div>
   </div>
 </section>
 
-<section>
+<section id="about">
   <div class="wrap split">
+    <figure class="quote-photo">
+      <div class="media arch"><img src="{c.img('breda-morrissey-avatar.jpg')}" alt="Breda Morrissey" width="438" height="438" loading="lazy"></div>
+      <figcaption>“Seeking support isn’t a sign of weakness; it’s the beginning of taking back control over your life.”<span>Breda Morrissey</span></figcaption>
+    </figure>
     <div>
-      <p class="kicker">How I can help</p>
-      <h2>Support for the things that weigh on you</h2>
-      <p class="lead">I support people who are struggling with:</p>
-      <ul class="ticks">
-        <li>Anxiety and constant worry</li>
-        <li>Overthinking and racing thoughts</li>
-        <li>Low self-esteem and lack of confidence</li>
-        <li>Feeling stuck, lost, or unsure about life</li>
-        <li>Emotional impact of illness, including cancer</li>
-        <li>Fertility challenges, including IVF and loss</li>
-        <li>Stress, overwhelm, and burnout</li>
-      </ul>
-      <p class="muted" style="margin-top:1.4rem">You might not have the “right words” for how you feel, and that’s okay. We can figure it out together.</p>
+      <p class="kicker">About me</p>
+      <h2>Hi, I’m Breda</h2>
+      <p class="lead">Reaching out for counselling isn’t easy. You might be used to putting your needs last. Maybe you’re telling yourself that you should be able to cope.</p>
+      <p>I always tell my clients that seeking support isn’t a sign of weakness; it’s the beginning of taking back control over your life. Because when you have the confidence to approach challenges and the coping tools to navigate life experiences, the positive effects span far beyond your mental health.</p>
+      <p>With a passion for helping people regain their confidence, my goal is for you to leave therapy feeling energised and excited for the future.</p>
+      <p>But more than anything, I want you to feel comfortable being yourself. You don’t need to pretend everything is fine, have the right words, or know exactly what you want from therapy.</p>
+      <p><strong>We’ll work that out together.</strong></p>
+      <div class="btn-row"><a class="btn btn-ghost" href="#credentials">More about me</a></div>
     </div>
-    <div class="media arch"><img src="{c.img('january-gentle-start.webp')}" alt="" width="1600" height="1001" loading="lazy"></div>
   </div>
 </section>
 
-<section class="surface-dark">
-  <div class="wrap split top">
-    <div>
-      <h2>A safe, supportive space to talk</h2>
-      <p>I offer a calm, confidential space where you can talk openly, feel heard, and begin to make sense of what’s going on for you.</p>
-      <p>Together, we can gently explore what’s been weighing on you and help you find ways to feel more in control, more confident, and more like yourself again.</p>
+<section class="surface-blush" id="how-i-can-help">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Online therapy services</p>
+      <h2>How I can help you</h2>
+      <p class="lead">Life challenges impact everyone differently. Maybe there’s a specific issue or event you’re struggling to work through. Or perhaps you know something’s not quite right but can’t put your finger on it.</p>
+      <p>My online therapy services are tailored for you. We’ll figure out the best approach and way forward together.</p>
     </div>
-    <div>
-      <h3>How we’ll work together</h3>
-      <p>I draw on a combination of counselling and Cognitive Behavioural Therapy (CBT), always tailored to you as an individual. There’s no one-size-fits-all approach. Our work together will move at a pace that feels right for you.</p>
-      <p>This is your space to talk freely, without judgement or pressure.</p>
-    </div>
+    <div class="help-grid">{cards}</div>
   </div>
 </section>
 
@@ -499,94 +552,70 @@ def page_home(c):
   <div class="wrap">{doctify_review(c)}</div>
 </section>
 
-<section>
+<section id="how-we-work">
   <div class="wrap">
-    <div class="split top">
-      <div>
-        <h2>Rebuilding confidence &amp; moving forward</h2>
-        <p class="statement">Confidence doesn’t come from “thinking positively”. It comes from learning to trust yourself again.</p>
-      </div>
-      <div>
-        <p class="lead">Through our work together, we can help you:</p>
-        <ul class="ticks">
-          <li>Understand and manage overthinking</li>
-          <li>Develop healthier ways of coping with anxiety</li>
-          <li>Build self-confidence and self-worth</li>
-          <li>Process difficult past experiences</li>
-          <li>Feel calmer, clearer, and more in control</li>
-        </ul>
-        <p class="muted" style="margin-top:1.4rem">Small changes can make a big difference over time.</p>
+    <div class="split top" style="margin-bottom:clamp(32px,4vw,52px)">
+      <div><p class="kicker">Getting started</p><h2>How we’ll work together</h2></div>
+      <div class="measure">
+        <p class="lead">Taking the first step is the hardest part of therapy, but I’m here to make everything easier.</p>
+        <p>First, we’ll have a no-obligation chat, which is a chance for me to learn about what’s important to you, and for you to learn how I can help you move forward.</p>
+        <p>Each session is tailored to your needs as an individual, because therapy isn’t just about approaches and exercises. It’s a space we create, where you feel able to share, learn, and reclaim your power.</p>
       </div>
     </div>
-    <div class="section-head" style="margin-top:clamp(56px,7vw,96px)"><p class="kicker">Ways we can work together</p><h2>Therapies tailored to you</h2></div>
-    <div class="trio">
-      <a href="{c.link('services', '#cognitive-behavioural-therapy')}">
-        <div class="thumb"><img src="{CDN['tile_cbt']}" alt="" loading="lazy"></div>
-        <div class="txt"><h3>Cognitive Behavioural Therapy</h3><p>Understand how your thoughts, feelings and actions connect, and learn practical ways to break unhelpful cycles.</p><span class="more">About CBT</span></div>
-      </a>
-      <a href="{c.link('services', '#counselling-psychotherapy')}">
-        <div class="thumb"><img src="{CDN['tile_counselling']}" alt="" loading="lazy"></div>
-        <div class="txt"><h3>Counselling &amp; Psychotherapy</h3><p>A confidential, non-judgemental space to explore personal issues, emotional pain or something that has happened in your life.</p><span class="more">About counselling</span></div>
-      </a>
-      <a href="{c.link('services', '#mindfulness')}">
-        <div class="thumb"><img src="{CDN['tile_mindfulness']}" alt="" loading="lazy"></div>
-        <div class="txt"><h3>Mindfulness</h3><p>Learn to observe your thoughts without judgement and develop a more compassionate inner voice.</p><span class="more">About mindfulness</span></div>
-      </a>
+    <div class="journey">
+      <ol class="journey-steps">
+        <li><h3>Our first conversation</h3>
+          <p>Our first conversation is an opportunity to get to know each other. I’ll ask a little about what’s brought you to counselling, what you’re hoping to achieve and how you’ve been feeling.</p>
+          <p>You can ask questions too. It’s important that you feel comfortable with the person you’re talking to. There’s no obligation to proceed with therapy.</p></li>
+        <li><h3>Your online counselling sessions</h3>
+          <p>We’ll meet online, so you can attend sessions from somewhere private and comfortable without having to travel.</p>
+          <p>Sessions with me can include exploring difficult experiences, understanding your feelings, and developing practical ways to manage everyday changes that work for you.</p>
+          <p>Everything is on your terms. I don’t expect you to share anything before you’re ready.</p></li>
+        <li><h3>Moving forward at your own pace</h3>
+          <p>There’s no fixed timeline for feeling better. Some people come to counselling with a specific concern, while others need more time to understand what they’re experiencing.</p>
+          <p>We’ll regularly check in on how you’re feeling and whether our sessions are helping you move towards your goals.</p></li>
+      </ol>
+      <aside class="fees card" aria-labelledby="fees-title">
+        <p class="kicker" style="margin-bottom:.4rem">Clear, upfront pricing</p>
+        <h3 id="fees-title">Online counselling fees</h3>
+        <dl class="fee-list">
+          <div><dt>Session fee</dt><dd>{tbc(FEE_SESSION, "To be confirmed")}</dd></div>
+          <div><dt>Session duration</dt><dd>{tbc(FEE_DURATION, "To be confirmed")}</dd></div>
+          <div><dt>Initial consultation</dt><dd>{tbc(FEE_INITIAL, "To be confirmed")}</dd></div>
+        </dl>
+        <p class="muted" style="font-size:.95rem">I believe it’s important that you know what to expect before committing to counselling. You’re welcome to get in touch if you’d like to discuss availability, fees or whether my services are right for you.</p>
+        <a class="btn btn-primary" style="width:100%" href="{c.link('contact')}">Book an initial consultation</a>
+      </aside>
     </div>
   </div>
 </section>
 
-<section class="surface-soft">
-  <div class="wrap split top">
-    <div>
-      <p class="kicker">About me</p>
-      <h2>A warm, qualified and accredited counsellor</h2>
-      <p>I am a qualified and accredited counsellor with experience supporting people through anxiety, depression, trauma, and life’s more challenging experiences.</p>
-      <p>I have a particular interest in helping those who feel overwhelmed, stuck, or who have lost confidence in themselves, especially after difficult life events such as illness, loss or anxiety struggles.</p>
-      <p>I aim to provide a space where you feel comfortable, respected, and genuinely supported.</p>
-
-    </div>
-    <div>
-      <div class="card"><h3>Qualifications</h3>
-      <ul class="creds">
-        <li>Postgraduate Diploma in Cognitive Behavioural Therapy</li>
-        <li>BA (Hons) in Counselling &amp; Psychotherapy</li>
-        <li>BA Counselling Skills &amp; Psychotherapy Studies</li>
-        <li>Diploma in Positive Psychology</li>
-        <li>Cert. REBT (Rational Emotive Behaviour Therapy) practitioner</li>
-        <li>Diploma in Human Resource Development</li>
-        <li>BSc Science, Health, Fitness &amp; Leisure</li>
-      </ul></div>
-    </div>
-  </div>
-</section>
-
+<span id="credentials"></span>
 {accred_section(c)}
 
-<section>
-  <div class="wrap split top">
+<section class="surface-dark cta-band">
+  {RIPPLE}
+  <div class="wrap">
     <div>
-      <h2>What to expect</h2>
-      <p>Starting therapy can feel like a big step, especially if you’ve never done it before.</p>
-      <p>In our first session, we’ll take things gently. We’ll talk about what’s been going on for you, what you’d like support with, and answer any questions you may have.</p>
-      <p>There’s no pressure, just a chance to begin.</p>
+      <h2>Rebuild confidence and move forward</h2>
+      <p>You don’t have to wait until things feel unbearable to ask for support. Whether you’re struggling with anxiety, feeling disconnected from yourself, or simply want to understand your thoughts and emotions better, counselling can be a positive first step.</p>
+      <p>If you’re ready to talk, I’d be happy to hear from you. <strong>You don’t need to have everything figured out. We can start wherever you are.</strong></p>
     </div>
-    <div>
-      <h2>Online counselling, Ireland &amp; UK</h2>
-      <p>All sessions are held online, making therapy accessible wherever you are. I work with clients across:</p>
-      <ul class="chips"><li>Dublin</li><li>Cork</li><li>Galway</li><li>Limerick</li><li>Tipperary</li><li>Nationwide</li><li>United Kingdom</li></ul>
+    <div class="btn-row" style="margin-top:0">
+      <a class="btn btn-primary" href="{c.link('contact')}">Book an initial consultation</a>
+      <a class="btn btn-ghost" href="tel:{TEL}">{PHONE}</a>
     </div>
   </div>
-  <div class="wrap">
-    <div class="hl-box" style="margin-top:clamp(40px,6vw,72px)">
-      <h3>Not sure what to expect from therapy?</h3>
-      <p class="measure">That’s okay. Find some answers here that can help reassure you about seeking counselling. If they don’t help, just get in touch and I can support you through this process.</p>
-      <div class="reassure">
-        <a href="{c.link('services', '#what-to-expect')}">What to expect <span aria-hidden="true">+</span></a>
-        <a href="{c.link('faq')}">Frequently asked questions <span aria-hidden="true">+</span></a>
-        <a href="{c.link('contact')}">Get support <span aria-hidden="true">+</span></a>
-      </div>
+</section>
+
+<section id="faq">
+  <div class="wrap split top">
+    <div>
+      <p class="kicker">Your questions answered</p>
+      <h2>Frequently asked questions</h2>
+      <p class="muted">Can’t find what you’re looking for? <a class="textlink" href="{c.link('faq')}">See more FAQs</a> or <a class="textlink" href="{c.link('contact')}">get in touch</a>.</p>
     </div>
+    <div class="faq">{faq_html}</div>
   </div>
 </section>'''
     schema = {
@@ -604,9 +633,12 @@ def page_home(c):
       "founder": {"@type": "Person", "name": "Breda Morrissey", "jobTitle": "Accredited Counsellor and Psychotherapist",
                   "hasCredential": "BA (Hons) Counselling & Psychotherapy; Postgraduate Diploma in CBT",
                   "memberOf": {"@type": "Organization", "name": "APCP", "url": "https://www.apcp.ie/"}}}
-    return layout(c, "Online Counselling Ireland | Anxiety, Stress & Self-Esteem | Breda Morrissey",
-                  "Online counselling for anxiety, overthinking, and low self-esteem. Supporting clients across Ireland and the UK. Safe, confidential, and compassionate therapy.",
-                  body, schema)
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}}
+        for q, a in faqs if "tbc" not in a]}
+    return layout(c, "Online Counselling in Ireland and the UK | Breda Morrissey",
+                  "Online counselling in Ireland and the UK for anxiety, overthinking, low confidence and depression. Accredited counsellor and psychotherapist Breda Morrissey.",
+                  body, [schema, faq_schema])
 
 def page_anxiety(c):
     hero = page_hero(c, "CBT for anxiety", "Counselling &amp; CBT for anxiety, worry and overthinking",
@@ -963,7 +995,7 @@ def page_contact(c):
     body = hero + f'''
 <section>
   <div class="wrap contact-grid">
-    <form class="form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+    <form class="form" id="contact-form" action="/api/contact" method="POST" novalidate>
       <h2 style="font-size:1.9rem">Send a message</h2>
       <div class="field"><label for="name">Name</label><input id="name" name="name" autocomplete="name" required></div>
       <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
@@ -1213,6 +1245,8 @@ def build(mode):
             html_out = page_post(c, POSTS[idx], idx, extracted)
         else:
             html_out = builders[key](c)
+        if mode == "site" and (key.startswith("post:") or key == "blog"):
+            continue  # on Vercel the blog is served by the CMS (api/render.js)
         fname = PAGES[key][0] if mode == "site" else PAGES[key][2]
         path = os.path.join(out, fname)
         os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -1231,17 +1265,55 @@ def write_meta():
         rows.append((PAGES[k][1], lastmod))
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     sm += "".join(f"  <url><loc>{DOMAIN}{u}</loc><lastmod>{m}</lastmod></url>\n" for u, m in rows) + "</urlset>\n"
-    open(os.path.join(SITE, "sitemap.xml"), "w").write(sm)
-    open(os.path.join(SITE, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
+    # sitemap.xml is generated live by api/render.js (includes CMS pages and posts)
+    open(os.path.join(SITE, "robots.txt"), "w").write(f"User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\n\nSitemap: {DOMAIN}/sitemap.xml\n")
     vercel = {"cleanUrls": True, "trailingSlash": False,
               "redirects": [{"source": a, "destination": b, "statusCode": 301} for a, b in REDIRECTS],
+              "rewrites": [
+                  {"source": "/sitemap.xml", "destination": "/api/render?route=sitemap"},
+                  {"source": "/blog", "destination": "/api/render?route=blog"},
+                  {"source": "/blog/:slug", "destination": "/api/render?route=post&slug=:slug"},
+                  {"source": "/:slug", "destination": "/api/render?route=page&slug=:slug"}],
               "headers": [{"source": "/images/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=31536000, immutable"}]},
                           {"source": "/assets/(.*)", "headers": [{"key": "Cache-Control", "value": "public, max-age=86400"}]},
+                          {"source": "/admin(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}, {"key": "Cache-Control", "value": "no-store"}]},
                           {"source": "/(.*)", "headers": [{"key": "X-Content-Type-Options", "value": "nosniff"},
                                                           {"key": "Referrer-Policy", "value": "strict-origin-when-cross-origin"},
                                                           {"key": "X-Frame-Options", "value": "SAMEORIGIN"}]}]}
     open(os.path.join(SITE, "vercel.json"), "w").write(json.dumps(vercel, indent=2) + "\n")
 
+def write_cms():
+    """Exports the site shell and seed content for the CMS (api/)."""
+    def shell(key):
+        c = Ctx("site", key)
+        h = layout(c, "%%TITLE%%", "%%DESC%%", "%%BODY%%")
+        h = re.sub(r'<script type="application/ld\+json">.*?</script>', "", h, flags=re.S)
+        h = re.sub(r'<link rel="canonical" href="[^"]*">', '<link rel="canonical" href="%%CANON%%">\n%%ROBOTS%%', h)
+        h = re.sub(r'<meta property="og:url" content="[^"]*">', '<meta property="og:url" content="%%CANON%%">', h)
+        h = re.sub(r'<meta property="og:image" content="[^"]*">', '<meta property="og:image" content="%%OGIMG%%">', h)
+        h = re.sub(r'<meta property="og:type" content="[^"]*">', '<meta property="og:type" content="%%OGTYPE%%">', h)
+        h = h.replace("</head>", "%%SCHEMA%%\n</head>")
+        return h
+    lib = os.path.join(SITE, "api", "_lib")
+    os.makedirs(lib, exist_ok=True)
+    open(os.path.join(lib, "shell.js"), "w", encoding="utf-8").write(
+        "// Generated by _source/build.py. Do not edit by hand.\nmodule.exports = " +
+        json.dumps({"blog": shell("blog"), "page": shell("404")}, ensure_ascii=False) + ";\n")
+    c = Ctx("site", "blog")
+    posts = []
+    for p in POSTS:
+        if p["src"] is None:
+            body = ONLINE_CBT
+        elif p.get("placeholder"):
+            body = "<p>Write this article here.</p>"
+        else:
+            body = clean_body(EXTRACTED[p["src"]]["body"], c, p["title"])
+        posts.append({"id": p["slug"], "slug": p["slug"], "title": p["title"], "date": p["date"], "topic": p["rel"],
+                      "excerpt": p["excerpt"], "description": p["desc"], "cover": "/images/" + p["img"],
+                      "status": "draft" if p.get("placeholder") else "published",
+                      "sections": [{"type": "text", "heading": "", "html": body}]})
+    open(os.path.join(lib, "seed.json"), "w", encoding="utf-8").write(json.dumps({"posts": posts, "pages": []}, ensure_ascii=False, indent=1))
+
 if __name__ == "__main__":
-    build("site"); build("preview"); write_meta()
+    build("site"); build("preview"); write_meta(); write_cms()
     print("Built", len(PAGES), "pages")

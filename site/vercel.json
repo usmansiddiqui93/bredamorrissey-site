@@ -73,6 +73,24 @@
       "statusCode": 301
     }
   ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/render?route=sitemap"
+    },
+    {
+      "source": "/blog",
+      "destination": "/api/render?route=blog"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/api/render?route=post&slug=:slug"
+    },
+    {
+      "source": "/:slug",
+      "destination": "/api/render?route=page&slug=:slug"
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",
@@ -89,6 +107,19 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/admin(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
         }
       ]
     },
