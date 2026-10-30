@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<title>Blog article</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&amp;family=Open+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FDFAFB}
+a{color:#7A4A6E}a:hover{color:#5C3553}
+summary::-webkit-details-marker{display:none}
+summary{list-style:none}
+
+@media (max-width: 1080px){
+  h1{font-size:48px!important}
+  h2[style*="font-size: 46px"],h2[style*="font-size: 42px"]{font-size:38px!important}
+  h2[style*="font-size: 52px"]{font-size:42px!important}
+  section[style*="padding: 104px 0"]{padding:80px 0!important}
+  [style*="padding: 88px 32px 104px"]{padding:64px 32px 80px!important;gap:48px!important}
+  a[style*="grid-row: span 2"]{grid-row:auto!important}
+  .unsure > div:first-child{flex:1 1 100%!important}
+  .unsure-btns{flex:1 1 100%}
+  .unsure-btns a{flex:1 1 220px}
+}
+@media (max-width: 760px){
+  span[style*="padding: 0 8px 0 24px"]{align-self:stretch!important;justify-content:space-between!important;padding:0 8px 0 20px!important;font-size:15px!important;white-space:nowrap}
+  section a[style*="min-height: 52px"]{width:100%;justify-content:center!important;box-sizing:border-box}
+  .creds-logos{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));justify-items:center;align-items:center;gap:22px 12px!important;padding-top:20px;border-top:1px solid #E9DCE2}
+  .creds-logos img{max-width:100%}
+  [style*="justify-content: space-between; gap: 24px 64px; align-items: end"]{gap:16px!important}
+  [style*="padding: 9px 32px"]{justify-content:center!important;padding:8px 16px!important;font-size:13px}
+  .m-hide{display:none!important}
+  [style*="padding: 16px 32px"]{padding:10px 16px!important}
+  header img[style*="height: 60px"]{height:44px!important}
+  nav[aria-label="Main"]{display:none!important}
+  header a[style*="min-height: 48px"]{display:none!important}
+  .m-menu{display:inline-flex!important}
+  [style*="padding: 88px 32px 104px"]{padding:44px 20px 64px!important;gap:40px!important}
+  h1{font-size:38px!important;max-width:none!important}
+  p[style*="font-size: 22px; line-height: 1.5"]{font-size:19px!important}
+  div[style*="inset: -16px -16px 28px 28px"]{display:none!important}
+  div[style*="left: -32px; bottom: 40px"]{left:10px!important;bottom:14px!important;max-width:200px!important;padding:12px 14px!important}
+  a[aria-label^="Rated 4.97"]{right:10px!important;top:14px!important;transform:scale(.82);transform-origin:top right}
+  [style*="padding: 0 32px"]{padding-left:20px!important;padding-right:20px!important}
+  section[style*="padding: 104px 0"]{padding:64px 0!important}
+  section[style*="padding: 104px 0 56px"]{padding:64px 0 32px!important}
+  section[style*="padding: 56px 0 104px"]{padding:32px 0 64px!important}
+  section[style*="padding: 0 0 104px"]{padding:0 0 64px!important}
+  section[style*="padding: 112px 0"]{padding:72px 0!important}
+  section[style*="padding: 88px 0"]{padding:56px 0!important}
+  h2[style*="font-size: 46px"],h2[style*="font-size: 42px"]{font-size:32px!important}
+  h2[style*="font-size: 52px"]{font-size:34px!important}
+  div[style*="padding: 56px 52px"]{padding:34px 24px!important}
+  div[style*="padding: 64px 56px"]{padding:34px 20px!important;border-radius:28px!important}
+  div[style*="padding: 36px; box-shadow"]{padding:26px 20px!important}
+  p[style*="font-size: 29px"]{font-size:23px!important}
+  p[style*="font-size: 26px"]{font-size:21px!important}
+  p[style*="font-size: 23px"],p[style*="font-size: 21px"]{font-size:19px!important}
+  span[style*="font-size: 34px"]{font-size:28px!important}
+  span[style*="font-size: 56px"]{font-size:42px!important}
+  a[style*="grid-row: span 2"]{padding:30px 24px!important}
+  .unsure{padding:20px!important}
+  .unsure > div{flex:1 1 100%!important}
+  .unsure-btns a{flex:1 1 220px}
+  .steps > li{flex:1 1 100%!important}
+  footer [style*="justify-content: space-between; gap: 12px; margin-top: 48px"]{flex-direction:column;gap:6px!important;margin-top:36px!important;font-size:13px!important}
+  li[style*="padding: 34px 32px 30px"]{padding:28px 22px 24px!important}
+  div[aria-hidden="true"][style*="margin: 0 8% 22px"]{display:none!important}
+  div[style*="padding: 20px 36px"]{padding:14px 18px!important}
+  div[style*="padding: 20px 36px"] p{font-size:14px!important}
+  div[style*="padding: 20px 36px"] b[style*="font-size: 24px"]{font-size:17px!important}
+  div[style*="padding: 20px 36px"] svg{width:18px!important;height:18px!important}
+  div[style*="padding: 20px 36px"] span[style*="font-size: 26px"]{font-size:20px!important}
+  div[style*="padding: 18px 52px 0"]{padding:12px 0 0!important}
+  button[aria-label="Previous review"],button[aria-label="Next review"]{display:none!important}
+  div[style*="padding: 26px 26px 30px"]{padding:20px 18px 24px!important}
+  div[style*="padding: 26px 26px 30px"] p{font-size:16px!important}
+  div[style*="padding: 26px 26px 30px"] span[style*="font-size: 24px"]{font-size:19px!important}
+  div[style*="padding: 26px 26px 30px"] [style*="font-size: 18px; color: #141B4D"]{font-size:15px!important}
+  [style*="padding: 32px 40px"]{padding:24px 20px!important}
+  details[style*="padding: 6px 28px"]{padding:2px 18px!important}
+  summary{font-size:17px!important}
+  footer[style*="padding: 72px 0 32px"]{padding:48px 0 28px!important}
+}
+
+@media (max-width: 380px){
+  h1{font-size:32px!important}
+  h2[style*="font-size: 46px"],h2[style*="font-size: 42px"],h2[style*="font-size: 52px"]{font-size:28px!important}
+  [style*="padding: 0 32px"]{padding-left:16px!important;padding-right:16px!important}
+  p[style*="font-size: 29px"]{font-size:21px!important}
+  span[style*="font-size: 56px"]{font-size:36px!important}
+  div[style*="padding: 56px 52px"],div[style*="padding: 64px 56px"]{padding:28px 18px!important}
+}
+
+.article p,.article li{font-size:18px;line-height:1.85;color:#3F333D}
+.article h2{font-family:'DM Sans',Arial,sans-serif;font-weight:500;font-size:30px;line-height:1.2;color:#4A2840;margin:44px 0 14px}
+.article h3{font-family:'DM Sans',Arial,sans-serif;font-weight:500;font-size:22px;color:#4A2840;margin:32px 0 10px}
+.article ul,.article ol{padding-left:22px}
+.article li::marker{color:#93617F}
+.article blockquote{margin:24px 0;padding:22px 26px;background:#F8F2F4;border-radius:16px;font-family:'DM Sans',Arial,sans-serif;font-size:20px;color:#4A2840}
+.article figure{margin:32px 0}
+.article figure img{width:100%;border-radius:20px;display:block}
+.article .standfirst{font-family:'DM Sans',Arial,sans-serif;font-size:22px;line-height:1.5;color:#4A2840;padding-left:20px;border-left:3px solid #C99AAE}
+@media (max-width: 760px){
+  .cycle-wrap{aspect-ratio:auto!important;max-width:420px!important}
+  .cycle-wrap svg{display:none!important}
+  .cycle-wrap > div{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;transform:none!important;width:100%!important;margin:0 0 34px!important}
+  .cycle-core{width:200px!important;height:200px!important;margin:10px auto 0!important}
+  .flow-branch{grid-template-columns:1fr!important}
+  .flow-branch-line{display:none!important}
+  .post-layout{grid-template-columns:1fr!important}
+  .post-aside{position:static!important;max-height:none!important;overflow:visible!important}
+  .article p,.article li{font-size:17px}
+  .article h2{font-size:25px}
+}
+</style>
+</helmet>
+<div style="font-family: 'Open Sans', Arial, sans-serif; color: #2E2230; background: #FDFAFB; font-size: 17px; line-height: 1.7">
+  <div style="background: #3A2034; color: #F8EEF2; font-size: 14px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 9px 32px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px">
+      <span class="m-hide">Online counselling &amp; CBT across Ireland and the UK</span>
+      <span style="display: flex; gap: 24px; flex-wrap: wrap"><a href="tel:+353838541298" style="color: #F8EEF2; text-decoration: none">083 854 1298</a><a href="mailto:bredamorrisseycounsellor@gmail.com" style="color: #F8EEF2; text-decoration: none">bredamorrisseycounsellor@gmail.com</a></span>
+    </div>
+  </div>
+  <header style="background: #FDFAFB; border-bottom: 1px solid #E9DCE2">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 16px 32px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+      <a href="Main.dc.html" aria-label="Breda Morrissey home"><img src="/_blob/37c73e664873fc38fff403ca7eb75610" alt="Breda Morrissey Counselling &amp; CBT" style="height: 60px; width: auto; display: block"></a>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-family: 'DM Sans', Arial, sans-serif; font-size: 16px; font-weight: 500">
+        <a href="Main.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">Home</a>
+        <a href="Anxiety.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">CBT for Anxiety</a>
+        <a href="Stress.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">CBT for Stress</a>
+        <a href="Services.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">Services</a>
+        <a href="Faq.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">FAQ</a>
+        <a href="Blog.dc.html" aria-current="page" style="padding: 10px 14px; border-radius: 999px; background: #F1E6EA; font-weight: 700; color: #4A2840; text-decoration: none">Blog</a>
+        <a href="Contact.dc.html" style="padding: 10px 14px; border-radius: 999px; color: #4A2840; text-decoration: none">Contact</a>
+        </nav>
+      <button type="button" class="m-menu" aria-label="Open menu" style="display: none; align-items: center; gap: 8px; min-height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid #E9DCE2; background: #FFFFFF; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 15px; cursor: pointer"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4A2840" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Menu</button>
+      <a href="Contact.dc.html" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 24px; border-radius: 999px; background: #7A4A6E; color: #FFFFFF; text-decoration: none; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 16px">Book a consultation</a>
+    </div>
+  </header>
+  <section style="position: relative; overflow: hidden; background: linear-gradient(180deg, #F1E6EA 0%, #F8F2F4 80%, #FDFAFB 100%)">
+    <svg aria-hidden="true" viewBox="0 0 1000 1000" style="position: absolute; right: -300px; top: -200px; width: 900px; height: 900px; pointer-events: none"><g fill="none" stroke="#C99AAE" stroke-width="1" opacity="0.45"><circle cx="500" cy="500" r="120"/><circle cx="500" cy="500" r="220"/><circle cx="500" cy="500" r="320"/><circle cx="500" cy="500" r="420"/></g></svg>
+    <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: 56px 32px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 56px">
+      <div style="flex: 1 1 560px; min-width: 0">
+        <p style="margin: 0 0 18px; font-size: 14px; color: #6D5D69"><a href="Main.dc.html" style="color: #6D5D69">Home</a> <span aria-hidden="true">/</span> <a href="Blog.dc.html" style="color: #6D5D69">Blog</a> <span aria-hidden="true">/</span> Article</p>
+        <p style="margin: 0 0 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 14.5px; color: #6D5D69"><span style="padding: 6px 12px; border-radius: 999px; background: #FFFFFF; color: #5C3553; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 12.5px">Anxiety &amp; overthinking</span>25 March 2026 · 4 min read</p>
+        <h1 style="margin: 0; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 50px; line-height: 1.12; letter-spacing: -0.01em; color: #4A2840; max-width: 22ch">How to Stop Overthinking Everything (Even When Your Mind Won’t Switch Off)</h1>
+        <div style="display: flex; align-items: center; gap: 14px; margin-top: 28px"><img src="/_blob/cf5b37b4570693bee2d4b2357dcb633c" alt="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: center top"><span><span style="display: block; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; color: #4A2840">Breda Morrissey</span><span style="font-size: 14px; color: #6D5D69">Accredited counsellor &amp; CBT psychotherapist</span></span></div>
+      </div>
+      <div style="flex: 0 1 340px; min-width: 240px; margin: 0 auto"><div style="border-radius: 200px 200px 32px 32px; overflow: hidden; aspect-ratio: 1 / 1; background: #E6D2DA; box-shadow: 0 24px 48px -24px rgba(58,32,52,0.35)"><img src="/_blob/74fcb56c6e9a8c9f94ebea1ec287ee00" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></div></div>
+    </div>
+  </section>
+  <section style="padding: 16px 0 104px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px">
+      <div class="post-layout" style="display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 72px; align-items: start">
+        <article class="article" style="max-width: 70ch"><p class="standfirst">Even when your mind won't switch off</p>
+<figure><img src="/_blob/d23e2178fcaf3bd360ed13c7d598e1b6" alt="The word thoughts printed on a notebook cover beside wheat stems"></figure>
+ <p>Do you ever feel like your mind just won’t stop?</p>
+<p>You replay conversations, imagine worst-case scenarios, and analyse every little detail—long after it’s over. Overthinking can feel exhausting, and no matter how hard you try, it can seem impossible to switch it off.</p>
+<p>If this sounds familiar, you’re not alone. Many people struggle with overthinking, especially when they are feeling anxious, overwhelmed, or have been through difficult life experiences.</p>
+ <h2 id="why-do-we-overthink">Why Do We Overthink?</h2>
+ <p>Overthinking isn’t a flaw—it’s actually your mind trying to protect you.</p>
+<p>When something in life feels uncertain or stressful, your brain goes into “problem-solving mode.” It tries to predict outcomes, avoid mistakes, and keep you safe.</p>
+<p>But instead of helping, it often leads to:</p>
+ <ul><li>Increased anxiety</li><li>Self-doubt</li><li>Difficulty making decisions</li><li>Feeling stuck or overwhelmed</li></ul>
+ <h2 id="the-problem-with-overthinking">The Problem with Overthinking</h2>
+ <p>The more you think, the more you feel like you should be able to “figure it out.”</p>
+<p>But overthinking doesn’t lead to clarity—it leads to confusion.</p>
+<p>You may notice:</p>
+ <ul><li>You go in circles without reaching a decision</li><li>Small worries become much bigger in your mind</li><li>You feel mentally drained</li></ul>
+ <h2 id="5-ways-to-gently-reduce-overthinking">5 Ways to Gently Reduce Overthinking</h2>
+ <h3>1. Notice the Thought (Without Fighting It)</h3>
+ <p>Instead of trying to stop the thought, try saying:</p>
+ <blockquote>“I’m noticing I’m overthinking right now.”</blockquote> <p>This creates a small bit of distance and reduces its intensity.</p>
+ <h3>2. Ask: “Is This Helpful?”</h3>
+ <p>Not all thoughts are useful.</p>
+<p>Gently ask yourself:</p>
+ <blockquote>“Is this helping me right now?”</blockquote> <p>If the answer is no, give yourself permission to step away from it.</p>
+ <h3>3. Set a “Worry Time”</h3>
+ <p>Choose a 15-minute window each day to let your mind think freely.</p>
+<p>When thoughts come up outside of that time, say:</p>
+ <blockquote>“I’ll come back to this later.”</blockquote> <p>Over time, this helps your brain feel less urgency.</p>
+ <h3>4. Bring Yourself Back to the Present</h3>
+ <p>Overthinking pulls you into the past or future.</p>
+<p>Ground yourself by noticing:</p>
+ <ul><li>What you can see</li><li>What you can hear</li><li>What you can feel</li></ul>
+ <p>Even a few seconds can help calm your mind.</p>
+ <h3>5. Take One Small Action</h3>
+ <p>Overthinking often leads to feeling stuck.</p>
+<p>Ask yourself:</p>
+ <blockquote>“What is one small step I can take right now?”</blockquote> <p>Action helps break the cycle.</p>
+ <h2 id="you-dont-have-to-do-this-alone">You Don’t Have to Do This Alone</h2>
+ <p>If overthinking is affecting your daily life, it can really help to talk it through with someone.</p>
+<p>I offer <strong>online counselling for anxiety and overthinking across Ireland and the UK</strong>, providing a calm, supportive space where you can begin to understand your thoughts and feel more in control again.</p>
+ <h2 id="final-thought">Final Thought</h2>
+ <p>Your mind isn’t working against you—it’s trying to protect you.</p>
+<p>With the right support, you can learn how to step out of overthinking and feel calmer, clearer, and more like yourself again.</p><div style="margin-top: 44px; background: #3A2034; border-radius: 28px; padding: 36px; color: #F8EEF2">
+            <p style="margin: 0 0 8px; font-family: 'DM Sans', Arial, sans-serif; font-size: 24px; font-weight: 500; color: #FFFFFF">Struggling with anxiety or overthinking?</p>
+            <p style="margin: 0 0 22px; color: #E6D2DA">Online CBT can help you understand anxious thoughts, break the cycle of worry and feel more in control.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px"><a href="Anxiety.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #F1E6EA; color: #3A2034; text-decoration: none; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700">Online CBT for anxiety</a><a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; border: 1.5px solid rgba(248,238,242,0.5); color: #FFFFFF; text-decoration: none; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700">Get in touch</a></div>
+          </div>
+          <nav aria-label="More articles" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 28px">
+            <a href="Blog.dc.html" style="display: block; padding: 20px 22px; border: 1px solid #E9DCE2; border-radius: 18px; text-decoration: none; background: #FFFFFF"><span style="display: block; font-size: 13px; color: #6D5D69">‹ Older article</span><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; color: #4A2840">January Without the Pressure</span></a>
+            <a href="Blog.dc.html" style="display: block; padding: 20px 22px; border: 1px solid #E9DCE2; border-radius: 18px; text-decoration: none; background: #FFFFFF; text-align: right"><span style="display: block; font-size: 13px; color: #6D5D69">Newer article ›</span><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; color: #4A2840">The Hidden Weight of Caring for Others</span></a>
+          </nav></article>
+        <aside class="post-aside" aria-label="About the author and related articles" style="display: grid; gap: 14px; align-self: start">
+          <nav aria-label="In this article" style="background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 28px; padding: 24px 26px 16px">
+            <p style="margin: 0 0 10px; font-family: 'DM Sans', Arial, sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #93617F">In this article</p>
+            <ol style="list-style: none; margin: 0; padding: 0"><li style="margin: 0"><a href="#why-do-we-overthink" style="display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F1E6EA; text-decoration: none; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; line-height: 1.35"><span style="flex: none; font-family: 'DM Sans', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #93617F">01</span>Why Do We Overthink?</a></li><li style="margin: 0"><a href="#the-problem-with-overthinking" style="display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F1E6EA; text-decoration: none; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; line-height: 1.35"><span style="flex: none; font-family: 'DM Sans', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #93617F">02</span>The Problem with Overthinking</a></li><li style="margin: 0"><a href="#5-ways-to-gently-reduce-overthinking" style="display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F1E6EA; text-decoration: none; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; line-height: 1.35"><span style="flex: none; font-family: 'DM Sans', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #93617F">03</span>5 Ways to Gently Reduce Overthinking</a></li><li style="margin: 0"><a href="#you-dont-have-to-do-this-alone" style="display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F1E6EA; text-decoration: none; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; line-height: 1.35"><span style="flex: none; font-family: 'DM Sans', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #93617F">04</span>You Don’t Have to Do This Alone</a></li><li style="margin: 0"><a href="#final-thought" style="display: flex; gap: 12px; align-items: baseline; padding: 9px 0; border-top: 1px solid #F1E6EA; text-decoration: none; color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-size: 15px; line-height: 1.35"><span style="flex: none; font-family: 'DM Sans', Arial, sans-serif; font-size: 12px; font-weight: 700; color: #93617F">05</span>Final Thought</a></li></ol>
+            <p style="margin: 12px 0 0; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #6D5D69"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#93617F" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>4 min read</p>
+          </nav>
+          <div style="background: #F1E6EA; border-radius: 28px; padding: 28px">
+            <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px"><img src="/_blob/cf5b37b4570693bee2d4b2357dcb633c" alt="" style="width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: center top"><span><span style="display: block; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; color: #4A2840">Breda Morrissey</span><span style="font-size: 13.5px; color: #6D5D69">BA (Hons) APCP</span></span></div>
+            <p style="margin: 0 0 18px; font-size: 15px; color: #4B3E49">Accredited counsellor and psychotherapist offering online CBT, counselling and mindfulness for adults across Ireland and the UK.</p>
+            <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #7A4A6E; color: #FFFFFF; text-decoration: none; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700">Book a consultation</a>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 28px; padding: 26px">
+            <p style="margin: 0 0 16px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; color: #4A2840">More on anxiety &amp; overthinking</p>
+            <div style="display: grid; gap: 14px"><a href="Post.dc.html" style="display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; text-decoration: none"><img src="/_blob/8497e567fd97e42f4cb283b1e7a1fb7b" alt="" style="width: 64px; height: 64px; border-radius: 12px; object-fit: cover"><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.35; color: #4A2840">Online CBT for Anxiety: How It Can Help You Feel More in Control</span></a><a href="Post.dc.html" style="display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; text-decoration: none"><img src="/_blob/c7731a4c625952d551014a72b389a219" alt="" style="width: 64px; height: 64px; border-radius: 12px; object-fit: cover"><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 15px; line-height: 1.35; color: #4A2840">Do You Overthink?</span></a></div>
+          </div>
+        <div style="background: #3A2034; border-radius: 28px; padding: 24px 26px; color: #F8EEF2">
+            <div style="display: flex; align-items: center; gap: 14px"><span style="font-family: 'DM Sans', Arial, sans-serif; font-size: 38px; font-weight: 700; line-height: 1; color: #FFFFFF">4.97</span><span><span aria-hidden="true" style="display: block; color: #C8A26A; letter-spacing: 3px">★★★★★</span><span style="font-size: 13.5px; color: #E6D2DA">10 verified client reviews</span></span></div>
+            <p style="margin: 14px 0 0; font-family: 'DM Sans', Arial, sans-serif; font-size: 15.5px; line-height: 1.5; color: #FFFFFF">“Breda’s calm and warm understanding helped me at a time when I needed…”</p>
+            <p style="margin: 6px 0 0; font-size: 13px; color: #E6D2DA">Verified patient on Doctify</p>
+          </div>
+          <div style="background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 28px; padding: 24px 26px">
+            <p style="margin: 0 0 6px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; color: #4A2840">Need to talk now?</p>
+            <p style="margin: 0 0 14px; font-size: 14.5px; color: #6D5D69">Call or WhatsApp, Mon–Thu 7am–7pm, Fri 7am–6pm.</p>
+            <a href="tel:+353838541298" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 999px; border: 1.5px solid #C99AAE; color: #4A2840; text-decoration: none; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A2840" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>083 854 1298</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+  <section style="padding: 104px 0; background: #F8F2F4">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 40px">
+        <div><p style="display: flex; align-items: center; gap: 12px; margin: 0 0 16px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 16px; color: #7A4A6E"><span style="width: 32px; height: 1px; background: #C8A26A; display: inline-block"></span>From the blog</p><h2 style="margin: 0 0 0px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 46px; line-height: 1.1; color: #4A2840">Keep reading</h2></div>
+        <a href="Blog.dc.html" style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; color: #5C3553; text-decoration: underline; text-decoration-color: #C99AAE; text-underline-offset: 6px">View all articles <span aria-hidden="true">→</span></a>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px"><a href="Blog.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 24px; overflow: hidden; text-decoration: none; color: #2E2230; box-shadow: 0 14px 34px -28px rgba(58,32,52,0.45)">
+          <div style="position: relative; padding-top: 62%; overflow: hidden; background: #E6D2DA"><img src="/_blob/8497e567fd97e42f4cb283b1e7a1fb7b" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; left: 14px; top: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.94); color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 12px; box-shadow: 0 4px 12px -6px rgba(58,32,52,0.4)">Anxiety & overthinking</span></div>
+          <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1">
+            <p style="margin: 0 0 10px; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #6D5D69"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#93617F" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>14 October 2026 · 6 min read</p>
+            <h3 style="margin: 0 0 10px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.3; color: #4A2840; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Online CBT for Anxiety: How It Can Help You Feel More in Control</h3>
+            <p style="margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: #6D5D69; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">How CBT works for anxiety, what happens in online sessions, and a small step you can try today.</p>
+            <span style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid #F1E6EA"><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 15px; color: #5C3553">Read article</span><span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #7A4A6E; display: grid; place-items: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
+          </div>
+        </a><a href="Blog.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 24px; overflow: hidden; text-decoration: none; color: #2E2230; box-shadow: 0 14px 34px -28px rgba(58,32,52,0.45)">
+          <div style="position: relative; padding-top: 62%; overflow: hidden; background: #E6D2DA"><img src="/_blob/d804a661a6d271f043d1ad2082e174a5" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; left: 14px; top: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.94); color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 12px; box-shadow: 0 4px 12px -6px rgba(58,32,52,0.4)">Stress & burnout</span></div>
+          <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1">
+            <p style="margin: 0 0 10px; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #6D5D69"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#93617F" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>10 August 2026 · 7 min read</p>
+            <h3 style="margin: 0 0 10px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.3; color: #4A2840; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">The August Reset: How to Look After Your Mental Health Before September Arrives</h3>
+            <p style="margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: #6D5D69; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Feeling like summer has passed too quickly? A gentle reset for anxiety, stress and overthinking before September.</p>
+            <span style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid #F1E6EA"><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 15px; color: #5C3553">Read article</span><span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #7A4A6E; display: grid; place-items: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
+          </div>
+        </a><a href="Blog.dc.html" style="display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid #E9DCE2; border-radius: 24px; overflow: hidden; text-decoration: none; color: #2E2230; box-shadow: 0 14px 34px -28px rgba(58,32,52,0.45)">
+          <div style="position: relative; padding-top: 62%; overflow: hidden; background: #E6D2DA"><img src="/_blob/c7731a4c625952d551014a72b389a219" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"><span style="position: absolute; left: 14px; top: 14px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,0.94); color: #4A2840; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 12px; box-shadow: 0 4px 12px -6px rgba(58,32,52,0.4)">Anxiety & overthinking</span></div>
+          <div style="padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1">
+            <p style="margin: 0 0 10px; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: #6D5D69"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#93617F" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>29 April 2025 · 3 min read</p>
+            <h3 style="margin: 0 0 10px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 500; font-size: 20px; line-height: 1.3; color: #4A2840; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">Do You Overthink?</h3>
+            <p style="margin: 0 0 20px; font-size: 15px; line-height: 1.6; color: #6D5D69; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden">What happens when we overthink, and some techniques to help.</p>
+            <span style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 16px; border-top: 1px solid #F1E6EA"><span style="font-family: 'DM Sans', Arial, sans-serif; font-weight: 700; font-size: 15px; color: #5C3553">Read article</span><span aria-hidden="true" style="flex: none; width: 38px; height: 38px; border-radius: 50%; background: #7A4A6E; display: grid; place-items: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span></span>
+          </div>
+        </a></div>
+    </div>
+  </section>
+  <!-- FOOTER -->
+  <footer style="background: #3A2034; color: #F8EEF2; padding: 72px 0 32px; font-size: 15px">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px">
+      <div style="display: flex; flex-wrap: wrap; gap: 48px">
+        <div style="flex: 2 1 320px">
+          <img src="/_blob/622223bbf90474e350403cd94e58b7ed" alt="Breda Morrissey Counselling &amp; CBT" style="height: 60px; width: auto">
+          <p style="margin: 18px 0 0; max-width: 42ch; color: #E6D2DA">Breda Morrissey BA (Hons) APCP. Online CBT, counselling &amp; psychotherapy and mindfulness for adults across Ireland and the UK.</p>
+        </div>
+        <div style="flex: 1 1 200px">
+          <p style="margin: 0 0 14px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700">Contact</p>
+          <p style="margin: 0 0 8px"><a href="tel:+353838541298" style="color: #F8EEF2; text-decoration: none">083 854 1298</a></p>
+          <p style="margin: 0 0 8px"><a href="mailto:bredamorrisseycounsellor@gmail.com" style="color: #F8EEF2; text-decoration: none">bredamorrisseycounsellor@gmail.com</a></p>
+          <p style="margin: 0; color: #E6D2DA">Mon–Thu 7am–7pm, Fri 7am–6pm</p>
+        </div>
+        <div style="flex: 1 1 160px">
+          <p style="margin: 0 0 14px; font-family: 'DM Sans', Arial, sans-serif; font-weight: 700">Pages</p>
+          <p style="margin: 0 0 8px"><a href="Main.dc.html" style="color: #F8EEF2; text-decoration: none">Home</a></p>
+          <p style="margin: 0 0 8px"><a href="Services.dc.html" style="color: #F8EEF2; text-decoration: none">Services</a></p>
+          <p style="margin: 0 0 8px"><a href="Faq.dc.html" style="color: #F8EEF2; text-decoration: none">FAQ</a></p>
+          <p style="margin: 0"><a href="Contact.dc.html" style="color: #F8EEF2; text-decoration: none">Contact</a></p>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(248,238,242,0.16); font-size: 14px; color: #E6D2DA">
+        <span>© 2026 Breda Morrissey</span>
+        <span>If you are in crisis, contact emergency services on 112 or 999.</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":6000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
