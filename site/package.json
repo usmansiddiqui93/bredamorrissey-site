@@ -1,9 +1,0 @@
-{
-  "name": "bredamorrissey-site",
-  "private": true,
-  "description": "Breda Morrissey Counselling & CBT website with built-in CMS",
-  "engines": { "node": ">=18" },
-  "dependencies": {
-    "@vercel/blob": "2.8.1"
-  }
-}
